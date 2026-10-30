@@ -1,12 +1,9 @@
-[gd_scene format=3 uid="uid://b2jtojhn7x8nj"]
+[gd_scene format=3 uid="uid://csx6sr7lmgw5g"]
 
 [ext_resource type="Script" uid="uid://cxctbwjwx1jx4" path="res://Assets/Scripts/pieza.gd" id="1_6yo0i"]
-[ext_resource type="PackedScene" uid="uid://eefrbytkpjqr" path="res://Assets/default_cube.glb" id="2_3yltt"]
+[ext_resource type="PackedScene" uid="uid://dv262bjrycr1e" path="res://default_cube.glb" id="2_6yo0i"]
 
-[node name="Pieza" type="Node3D" unique_id=588029681]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=475249853]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1951652968]
 script = ExtResource("1_6yo0i")
-radio_snap = 1.0
 
-[node name="default_cube" parent="CharacterBody3D" unique_id=1159183768 instance=ExtResource("2_3yltt")]
+[node name="default_cube" parent="." unique_id=753227282 instance=ExtResource("2_6yo0i")]
