@@ -6,4 +6,6 @@
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1951652968]
 script = ExtResource("1_6yo0i")
 
-[node name="default_cube" parent="." unique_id=753227282 instance=ExtResource("2_6yo0i")]
+[node name="default_cube" parent="." unique_id=937569644 instance=ExtResource("2_6yo0i")]
+
+[node name="rcs" type="Node3D" parent="." unique_id=580672662]

@@ -9,6 +9,10 @@ background_energy_multiplier = 1.1
 
 [node name="TestingScene" type="Node3D" unique_id=280427229]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1489301161]
+transform = Transform3D(0.9903388, -0.12009102, 0.06933454, 2.7805946e-08, 0.49999994, 0.86602545, -0.1386691, -0.8576586, 0.4951693, 0, 0, 0)
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1670170823]
 environment = SubResource("Environment_6fj2g")
 
@@ -18,9 +22,10 @@ near = 2.062
 far = 103.85
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=883699488]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5972233, 0, -7.8393526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.853527, 0, 10.250439)
+visible = false
 shadow_enabled = true
-omni_range = 4.02
+omni_range = 2000.0
 omni_attenuation = -6.647
 
 [node name="Label" type="Label" parent="." unique_id=310238947]
@@ -28,8 +33,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="CharacterBody3D" parent="." unique_id=1951652968 instance=ExtResource("1_oq1i5")]
-radio_snap = 10.0
 
 [node name="CharacterBody3D2" parent="." unique_id=658691468 instance=ExtResource("1_oq1i5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8801045, 0, 0)
-radio_snap = 10.0
