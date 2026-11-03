@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="snap"
-run/main_scene="uid://b838nf55h40vm"
+run/main_scene="uid://iku2nj2af4my"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

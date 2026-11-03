@@ -13,6 +13,7 @@ var plano: Plane
 var z_fijo = 0.0
 
 func _ready():
+	# mover_a_posicion(Vector3(1,1,0))
 	camara = get_viewport().get_camera_3d()
 	add_to_group("fichas")
 	var col1 = find_child("CollisionShape3D") as CollisionShape3D
@@ -89,3 +90,6 @@ func _physics_process(delta):
 					_modelo.position = punto - rc.global_position
 					return
 			_modelo.position = Vector3.ZERO
+			
+func mover_a_posicion(posicion: Vector3):
+	global_position = posicion

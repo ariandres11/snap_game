@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dxlcu863nmsnd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cucjr"]
+font_size = 50
+
+[node name="UI Juego" type="Control" unique_id=950575125]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1986815069]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(5.7756904e-07, 0.48748606, 0.69338226, 0.11372549)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=95844300]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0.36862746, 0.5294118, 1)
+
+[node name="Label" type="Label" parent="ColorRect2" unique_id=289287804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FIGURA A ARMAR:"
+label_settings = SubResource("LabelSettings_cucjr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect2" unique_id=1994624068]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -35.0
+offset_right = -292.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
