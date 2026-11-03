@@ -11,12 +11,11 @@ var offsets_relativos: PackedVector3Array = []
 func _ready() -> void:
 	piezas = $puzzle.get_children()
 	panel_ganaste = $PanelGanaste
+	for pieza in piezas:
+		if pieza is Ficha3D:
+			pieza.arrastre_finalizado.connect(chequear)
 	guardar_datos_piezas()
 	desarmar()
-
-func _process(delta: float) -> void:
-	chequear()
-	pass
 
 func guardar_datos_piezas() -> void:
 	offsets_relativos.clear()

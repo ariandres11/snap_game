@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csx6sr7lmgw5g"]
 
 [ext_resource type="Script" uid="uid://cxctbwjwx1jx4" path="res://Assets/Scripts/pieza.gd" id="1_6yo0i"]
-[ext_resource type="PackedScene" uid="uid://dv262bjrycr1e" path="res://default_cube.glb" id="2_6yo0i"]
+[ext_resource type="PackedScene" uid="uid://dv262bjrycr1e" path="res://Scenes/default_cube.glb" id="2_6yo0i"]
 
 [node name="Pieza" type="CharacterBody3D" unique_id=1951652968]
 axis_lock_linear_z = true

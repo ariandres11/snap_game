@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Ficha3D
 
+signal arrastre_finalizado
+
 @export var radio_snap: float = 3.0
 @export var velocidad: float = 25.0
 
@@ -70,6 +72,7 @@ func _unhandled_input(event: InputEvent):
 				z_fijo = global_position.z
 				plano = Plane(Vector3.BACK, global_position)
 		elif arrastrando:
+			arrastre_finalizado.emit()
 			arrastrando = false
 			global_position = _modelo.global_position
 			_modelo.position = Vector3.ZERO

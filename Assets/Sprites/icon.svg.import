@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmqqf87tugqdk"
-path="res://.godot/imported/logo_inicial_snap.svg-6aad9bc92529f0cad68b397056d928c8.ctex"
+uid="uid://bv3jmv0agerov"
+path="res://.godot/imported/icon.svg-937281dbc6e7ba0435124e30fe85aebc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logo_inicial_snap.svg"
-dest_files=["res://.godot/imported/logo_inicial_snap.svg-6aad9bc92529f0cad68b397056d928c8.ctex"]
+source_file="res://Assets/Sprites/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-937281dbc6e7ba0435124e30fe85aebc.ctex"]
 
 [params]
 

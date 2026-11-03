@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b838nf55h40vm"]
 
 [ext_resource type="PackedScene" uid="uid://csx6sr7lmgw5g" path="res://Scenes/pieza.tscn" id="1_oq1i5"]
-[ext_resource type="Script" uid="uid://ybda02sboi2k" path="res://Scenes/nivel.gd" id="1_ybjcv"]
-[ext_resource type="PackedScene" uid="uid://dxlcu863nmsnd" path="res://ui_juego.tscn" id="2_h21bk"]
+[ext_resource type="Script" uid="uid://ybda02sboi2k" path="res://Assets/Scripts/nivel.gd" id="1_ybjcv"]
+[ext_resource type="PackedScene" uid="uid://dxlcu863nmsnd" path="res://Scenes/ui_juego.tscn" id="2_h21bk"]
 
 [sub_resource type="Environment" id="Environment_6fj2g"]
 background_mode = 1
