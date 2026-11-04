@@ -72,10 +72,10 @@ func _unhandled_input(event: InputEvent):
 				z_fijo = global_position.z
 				plano = Plane(Vector3.BACK, global_position)
 		elif arrastrando:
-			arrastre_finalizado.emit()
 			arrastrando = false
 			global_position = _modelo.global_position
 			_modelo.position = Vector3.ZERO
+			arrastre_finalizado.emit()
 
 func _physics_process(delta):
 	if arrastrando:
@@ -89,9 +89,10 @@ func _physics_process(delta):
 			
 			for rc: RayCast3D in _rcs.get_children():
 				if rc.is_colliding():
-					var punto := rc.get_collision_point()
-					_modelo.position = punto - rc.global_position
-					return
+					var punto := rc.get_collision_point() - rc.global_position
+					if not test_move(transform, punto):
+						_modelo.position = punto
+						return
 			_modelo.position = Vector3.ZERO
 			
 func mover_a_posicion(posicion: Vector3):
