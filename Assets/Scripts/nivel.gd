@@ -10,6 +10,13 @@ var offsets_relativos: PackedVector3Array = []
 @export var margen_error: float = 0.3
 
 func _ready() -> void:
+	var ps = ResourceLoader.list_directory("res://Assets/Puzzles/001/")
+	for p in ps:
+		var pp : PackedScene = ResourceLoader.load("res://Assets/Puzzles/001/"+p)
+		print(pp)
+		add_child(pp.instantiate())
+	
+	
 	piezas = $puzzle.get_children()
 	panel_ganaste = $PanelGanaste
 	for pieza in piezas:
@@ -41,10 +48,12 @@ func guardar_datos_piezas() -> void:
 func desarmar() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
-	
+	var vect = Vector3.RIGHT
 	for pieza in piezas:
-		var move = (pieza.global_position - centroide) * 3
+		var move = vect * 3
+		vect = vect.rotated(Vector3.FORWARD,  2 * PI / piezas.size())
 		pieza.global_position += move
+		
 
 #func chequear():
 	#var centroide_actual := Vector3.ZERO

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cf5530ihbnh2p"]
+
+[ext_resource type="PackedScene" uid="uid://2hp3e1fx6yf4" path="res://Assets/Puzzles/001/puzzle_001_b.glb" id="1_qcpr0"]
+[ext_resource type="PackedScene" uid="uid://3scsm2we5qnc" path="res://Assets/Puzzles/001/puzzle_001_c.glb" id="2_1181d"]
+[ext_resource type="Script" uid="uid://cxctbwjwx1jx4" path="res://Assets/Scripts/pieza.gd" id="2_dougo"]
+[ext_resource type="PackedScene" uid="uid://c6lpmtldiaf1u" path="res://Assets/Puzzles/001/puzzle_001_a.glb" id="3_dougo"]
+
+[node name="puzzle_001" type="Node3D" unique_id=535869706]
+
+[node name="pieza" type="CharacterBody3D" parent="." unique_id=694394357]
+axis_lock_linear_z = true
+script = ExtResource("2_dougo")
+
+[node name="default_cube" parent="pieza" unique_id=1016911871 instance=ExtResource("3_dougo")]
+
+[node name="rcs" type="Node3D" parent="pieza" unique_id=989716381]
+
+[node name="pieza2" type="CharacterBody3D" parent="." unique_id=1874426250]
+axis_lock_linear_z = true
+script = ExtResource("2_dougo")
+
+[node name="default_cube" parent="pieza2" unique_id=190418937 instance=ExtResource("1_qcpr0")]
+
+[node name="rcs" type="Node3D" parent="pieza2" unique_id=1568235536]
+
+[node name="pieza3" type="CharacterBody3D" parent="." unique_id=1186575755]
+axis_lock_linear_z = true
+script = ExtResource("2_dougo")
+
+[node name="default_cube" parent="pieza3" unique_id=1895277949 instance=ExtResource("2_1181d")]
+
+[node name="rcs" type="Node3D" parent="pieza3" unique_id=1746716666]
