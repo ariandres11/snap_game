@@ -71,10 +71,12 @@ omni_attenuation = -6.647
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 mesh = SubResource("PlaneMesh_cucjr")
 
-[node name="puzzle" type="Node3D" parent="." unique_id=701901486]
+[node name="puzzle" type="Node3D" parent="." unique_id=701901486 node_paths=PackedStringArray("drag_manager")]
 script = ExtResource("3_s6pog")
 nombre_puzzle = "001"
+drag_manager = NodePath("../DragManager")
 
 [node name="DragManager" type="Node" parent="." unique_id=490656448]
 script = ExtResource("1_ybjcv")
-puzzle = NodePath("../puzzle")
+
+[connection signal="arrastre_finalizado" from="DragManager" to="puzzle" method="_on_drag_manager_arrastre_finalizado"]
