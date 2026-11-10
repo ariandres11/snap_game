@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ybda02sboi2k" path="res://Assets/Scripts/nivel.gd" id="1_704tp"]
 [ext_resource type="PackedScene" uid="uid://dxlcu863nmsnd" path="res://Scenes/ui_juego.tscn" id="1_pj00o"]
-[ext_resource type="PackedScene" uid="uid://cf5530ihbnh2p" path="res://puzzle_001.tscn" id="2_704tp"]
 
 [sub_resource type="Environment" id="Environment_b5a3u"]
 background_mode = 1
@@ -56,5 +55,3 @@ visible = false
 shadow_enabled = true
 omni_range = 2000.0
 omni_attenuation = -6.647
-
-[node name="puzzle" parent="." unique_id=535869706 instance=ExtResource("2_704tp")]
