@@ -7,16 +7,12 @@ const PUZZLE_PATH: String = "res://Assets/Puzzles/"
 @export var drag_manager: Node
 
 var _piezas: Array[CharacterBody3D] = []
-var _distancias_originales: Array[float] = []
 
 func _ready() -> void:
 	var ps := ResourceLoader.list_directory(PUZZLE_PATH + nombre_puzzle)
 	for p in ps:
 		var puzzle_ps: PackedScene = ResourceLoader.load(PUZZLE_PATH + nombre_puzzle + "/" + p)
-		var pieza := crear_pieza(puzzle_ps)
-		reparentar_colision(pieza)
-	
-	_distancias_originales = _calcular_distancias(_piezas)
+		crear_pieza(puzzle_ps)
 	
 	desarmar()
 
@@ -39,24 +35,25 @@ func crear_pieza(p: PackedScene) -> CharacterBody3D:
 	var nodo_rcs := Node3D.new()
 	nodo_rcs.name = "rcs"
 	pieza.add_child(nodo_rcs)
+	
+	var col := pieza.find_child("CollisionShape3D", true, false) as CollisionShape3D
+	if col:
+		col.reparent(pieza)
+	
+	var mesh_data := obtener_datos_convexo(col)
+	
+	for i in range(mesh_data.normales.size()):
+		print(mesh_data.normales[i])
+		var rc = RayCast3D.new()
+		rc.target_position = mesh_data.normales[i]
+		rc.position = mesh_data.centroides[i]
+		nodo_rcs.add_child(rc)
 
 	_piezas.append(pieza)
 	return pieza
 
-func reparentar_colision(pieza: Node) -> void:
-	var col := pieza.find_child("CollisionShape3D", true, false) as CollisionShape3D
-	if col:
-		col.reparent(pieza)
-		#print("[OK] CollisionShape3D reemparentado en: ", pieza.name)
-	else:
-		push_warning("[ERROR] No se encontró ningún CollisionShape3D en: " + pieza.name)
-
 func _chequear_distancias() -> bool:
-	var distancias_actuales := _calcular_distancias(_piezas)
-	for i in range(distancias_actuales.size()):
-		if abs(_distancias_originales[i] - distancias_actuales[i]) > margen_error:
-			return false
-	return true
+	return _calcular_distancias(_piezas).all(func(d): return d < margen_error)
 
 func _calcular_distancias(piezas: Array[CharacterBody3D]) -> Array[float]:
 	var resultado: Array[float] = [] 
@@ -70,3 +67,35 @@ func _calcular_distancias(piezas: Array[CharacterBody3D]) -> Array[float]:
 func _on_drag_manager_arrastre_finalizado(_pieza: CharacterBody3D) -> void:
 	if _chequear_distancias():
 		print("[OK] ¡Ganaste! El rompecabezas está armado correctamente.")
+		
+	
+func obtener_datos_convexo(col: CollisionShape3D) -> Dictionary:
+	if not col or not col.shape is ConvexPolygonShape3D:
+		push_warning("El nodo no contiene un ConvexPolygonShape3D.")
+		return {}
+	
+	var shape := col.shape as ConvexPolygonShape3D
+	var vertices_puros: PackedVector3Array = shape.points
+	var debug_mesh: ArrayMesh = shape.get_debug_mesh()
+	var caras: PackedVector3Array = debug_mesh.get_faces() 
+	var normales: Array[Vector3] = []
+	var centroides: Array[Vector3] = []
+	
+	for i in range(0, caras.size(), 3):
+		var v0 := caras[i]
+		var v1 := caras[i + 1]
+		var v2 := caras[i + 2]
+		
+		var centroide := (v0 + v1 + v2) / 3.0
+		
+		var normal := (v2 - v0).cross(v1 - v0).normalized()
+		
+		centroides.append(centroide)
+		normales.append(normal)
+		
+	return {
+		"vertices": vertices_puros,
+		"normales": normales,
+		"centroides": centroides
+	}
+	

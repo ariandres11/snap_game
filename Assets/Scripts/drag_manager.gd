@@ -5,12 +5,31 @@ signal arrastre_finalizado(pieza: CharacterBody3D)
 @onready var camara: Camera3D = get_viewport().get_camera_3d()
 
 var arrastrando: CharacterBody3D = null
-var plano_arrastre: Plane
+var arrastrando_offset: Vector3
+
+func _snap_check() -> void:
+	for rc: RayCast3D in arrastrando.get_node("rcs").get_children():
+		if rc.is_colliding():
+			var punto := rc.get_collision_point() - rc.global_position
+			if not arrastrando.test_move(camara.transform, punto):
+				arrastrando.get_node("modelo").position = punto
+				return
+	arrastrando.get_node("modelo").position = Vector3.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and arrastrando:
+		# Movimiento de drag
+		var m := camara.project_position(event.position, 0) - arrastrando_offset - arrastrando.global_position
+		m.z = 0
+		arrastrando.move_and_collide(m)
+	
+		# Verificacion de snap
+		_snap_check()
+		
+	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			var mouse := get_viewport().get_mouse_position()
+			var mouse : Vector2 = event.position
 			var query := PhysicsRayQueryParameters3D.create(
 				camara.project_ray_origin(mouse),
 				camara.project_ray_origin(mouse) + camara.project_ray_normal(mouse) * 1000.0
@@ -19,7 +38,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			if res and res.collider is CharacterBody3D:
 				arrastrando = res.collider
-				plano_arrastre = Plane(Vector3.BACK, arrastrando.global_position)
+				arrastrando_offset = res.position - arrastrando.global_position
+				
 		elif arrastrando:
 			var modelo = arrastrando.get_node_or_null("modelo")
 			if modelo:
@@ -28,15 +48,3 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			arrastre_finalizado.emit(arrastrando)
 			arrastrando = null
-
-func _physics_process(_delta: float) -> void:
-	if arrastrando and camara:
-		var pos_mouse := get_viewport().get_mouse_position()
-		var origen := camara.project_ray_origin(pos_mouse)
-		var normal := camara.project_ray_normal(pos_mouse)
-		
-		var pos_3d = plano_arrastre.intersects_ray(origen, normal)
-		if pos_3d != null:
-			var move: Vector3 = pos_3d - arrastrando.global_position
-			move.z = 0.0
-			arrastrando.move_and_collide(move)
